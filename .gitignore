@@ -2,6 +2,7 @@
 *.slo
 *.lo
 *.o
+*.obj
 
 # Compiled Dynamic libraries
 *.so
@@ -17,3 +18,7 @@
 *.sln
 *.suo
 *.opensdf
+
+#unnecessary logs
+*.log
+*.tlog
