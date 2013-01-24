@@ -1,0 +1,4 @@
+server:	drwestfall.info
+u/n:	project01
+pass:	csci355
+~/:	drwestfall.info/csci355
