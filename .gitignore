@@ -12,13 +12,3 @@
 *.lai
 *.la
 *.a
-
-#Solution stuff
-*.sdf
-*.sln
-*.suo
-*.opensdf
-
-#unnecessary logs
-*.log
-*.tlog
