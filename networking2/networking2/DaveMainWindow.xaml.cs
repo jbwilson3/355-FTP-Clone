@@ -22,7 +22,7 @@ namespace networking2
     /// </summary>
     public partial class MainWindow2 : Window
     {
-        public MainWindow2()
+        public Window1()
         {
             InitializeComponent();
         }
@@ -56,14 +56,9 @@ namespace networking2
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-         
-        }
-
-        private void btnConnect_Click_1(object sender, RoutedEventArgs e)
-        {
             address = "drwestfall.info";
             c_username = "project01";
-            c_password = "csci355";
+            c_password =  "csci355";
             StringBuilder result = new StringBuilder();
             //isValidConnection(server.Text,username.Text,password.Text);
 
@@ -79,33 +74,7 @@ namespace networking2
             Upload w2 = new Upload();
             w2.Show();
             // this.Hide();
-
         }
-
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            FtpWebRequest list = (FtpWebRequest)WebRequest.Create("ftp://" + address);
-            list.Credentials = new NetworkCredential(c_username, c_password);
-            list.Method = WebRequestMethods.Ftp.ListDirectory;
-            WebResponse listResponse = (FtpWebResponse)list.GetResponse();
-            Stream listStream = listResponse.GetResponseStream();
-            StreamReader listReader = new StreamReader(listStream);
-            try
-            {
-                string fileName;
-                lstDir.Items.Clear();
-                while (listReader.Peek() != -1)
-                {
-                    fileName = listReader.ReadLine();
-                    lstDir.Items.Add(fileName);
-                }
-            }
-            catch
-            {
-            }
-
-        }
-
 
 
     }

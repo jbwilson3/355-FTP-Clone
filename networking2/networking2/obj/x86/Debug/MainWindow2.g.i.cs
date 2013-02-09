@@ -75,7 +75,7 @@ namespace networking2 {
         
         #line 17 "..\..\..\MainWindow2.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.ListBox listBox1;
+        internal System.Windows.Controls.ListBox lstDir;
         
         #line default
         #line hidden
@@ -203,36 +203,50 @@ namespace networking2 {
             this.lstConnections = ((System.Windows.Controls.ListBox)(target));
             return;
             case 3:
-            this.button1 = ((System.Windows.Controls.Button)(target));
+            
+            #line 12 "..\..\..\MainWindow2.xaml"
+            ((System.Windows.Controls.ListBoxItem)(target)).Selected += new System.Windows.RoutedEventHandler(this.ListBoxItem_Selected);
+            
+            #line default
+            #line hidden
             return;
             case 4:
-            this.rectangle2 = ((System.Windows.Shapes.Rectangle)(target));
+            this.button1 = ((System.Windows.Controls.Button)(target));
             return;
             case 5:
-            this.listBox1 = ((System.Windows.Controls.ListBox)(target));
+            this.rectangle2 = ((System.Windows.Shapes.Rectangle)(target));
             return;
             case 6:
-            this.btnRefresh = ((System.Windows.Controls.Button)(target));
+            this.lstDir = ((System.Windows.Controls.ListBox)(target));
             return;
             case 7:
-            this.btnMkdir = ((System.Windows.Controls.Button)(target));
+            this.btnRefresh = ((System.Windows.Controls.Button)(target));
+            
+            #line 18 "..\..\..\MainWindow2.xaml"
+            this.btnRefresh.Click += new System.Windows.RoutedEventHandler(this.btnRefresh_Click);
+            
+            #line default
+            #line hidden
             return;
             case 8:
-            this.btnRemove = ((System.Windows.Controls.Button)(target));
+            this.btnMkdir = ((System.Windows.Controls.Button)(target));
             return;
             case 9:
-            this.btnChMod = ((System.Windows.Controls.Button)(target));
+            this.btnRemove = ((System.Windows.Controls.Button)(target));
             return;
             case 10:
-            this.btnRename = ((System.Windows.Controls.Button)(target));
+            this.btnChMod = ((System.Windows.Controls.Button)(target));
             return;
             case 11:
-            this.rectangle1 = ((System.Windows.Shapes.Rectangle)(target));
+            this.btnRename = ((System.Windows.Controls.Button)(target));
             return;
             case 12:
-            this.btnBrowse = ((System.Windows.Controls.Button)(target));
+            this.rectangle1 = ((System.Windows.Shapes.Rectangle)(target));
             return;
             case 13:
+            this.btnBrowse = ((System.Windows.Controls.Button)(target));
+            return;
+            case 14:
             this.btnConnect = ((System.Windows.Controls.Button)(target));
             
             #line 25 "..\..\..\MainWindow2.xaml"
@@ -241,13 +255,13 @@ namespace networking2 {
             #line default
             #line hidden
             return;
-            case 14:
+            case 15:
             this.btnUpload = ((System.Windows.Controls.Button)(target));
             return;
-            case 15:
+            case 16:
             this.txtWD = ((System.Windows.Controls.TextBlock)(target));
             return;
-            case 16:
+            case 17:
             this.txtFilePath = ((System.Windows.Controls.TextBlock)(target));
             return;
             }

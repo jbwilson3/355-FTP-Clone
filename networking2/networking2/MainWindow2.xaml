@@ -9,13 +9,13 @@
         </Grid.ColumnDefinitions>
         <Label Content="Connections" Height="30" HorizontalAlignment="Left" Margin="12,10,0,0" Name="label1" VerticalAlignment="Top" Width="95" Grid.ColumnSpan="2" />
         <ListBox Height="251" HorizontalAlignment="Left" Margin="26,46,0,0" Name="lstConnections" VerticalAlignment="Top" Width="157" Grid.ColumnSpan="2">
-            <ListBoxItem Content="Connection 1" DataContext="{Binding}" />
+            <ListBoxItem Content="Connection 1" DataContext="{Binding}" Selected="ListBoxItem_Selected" />
             <ListBoxItem Content="Connection 2" />
         </ListBox>
         <Button Content="Add" Height="25" HorizontalAlignment="Left" Margin="31,13,0,0" Name="button1" VerticalAlignment="Top" Width="72" Grid.Column="1" />
         <Rectangle Height="28" HorizontalAlignment="Left" Margin="124,12,0,0" Name="rectangle2" Stroke="Black" VerticalAlignment="Top" Width="267" Grid.Column="1" />
-        <ListBox Height="217" HorizontalAlignment="Left" Margin="123,46,0,0" Name="listBox1" VerticalAlignment="Top" Width="267" Grid.Column="1" />
-        <Button Content="Refrsh" Height="35" HorizontalAlignment="Left" Margin="403,10,0,0" Name="btnRefresh" VerticalAlignment="Top" Width="41" Grid.Column="1" />
+        <ListBox Height="217" HorizontalAlignment="Left" Margin="123,46,0,0" Name="lstDir" VerticalAlignment="Top" Width="267" Grid.Column="1" />
+        <Button Content="Refrsh" Height="35" HorizontalAlignment="Left" Margin="403,10,0,0" Name="btnRefresh" VerticalAlignment="Top" Width="41" Grid.Column="1" Click="btnRefresh_Click" />
         <Button Content="MkDir" Height="35" HorizontalAlignment="Left" Margin="403,78,0,0" Name="btnMkdir" VerticalAlignment="Top" Width="41" Grid.Column="1" />
         <Button Content="RM" Height="35" HorizontalAlignment="Left" Margin="403,128,0,0" Name="btnRemove" VerticalAlignment="Top" Width="41" Grid.Column="1" />
         <Button Content="P" Height="35" HorizontalAlignment="Left" Margin="403,177,0,0" Name="btnChMod" VerticalAlignment="Top" Width="41" Grid.Column="1" />
