@@ -15,28 +15,29 @@ using System.Net;
 using System.IO;
 using System.Threading;
 
-
 namespace networking2
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow2.xaml
     /// </summary>
-    public partial class MainWindow: Window
+    public partial class MainWindow2 : Window
     {
-
-       internal static string c_username, c_password, error, file_loc = string.Empty;
-        internal static string address = string.Empty;
-        public MainWindow()
+        public MainWindow2()
         {
             InitializeComponent();
         }
+    
+        internal static string c_username, c_password, error, file_loc = string.Empty;
+        internal static string address = string.Empty;
+
+
        private bool isValidConnection(string url, string user, string password)
              {
            
                  try 
             {
                 
-                     FtpWebRequest requestDir = (FtpWebRequest)WebRequest.Create("ftp://"+address);
+                FtpWebRequest requestDir = (FtpWebRequest)WebRequest.Create("ftp://"+address);
                 requestDir.Method = WebRequestMethods.Ftp.ListDirectory;
                 requestDir.Credentials = new NetworkCredential(c_username, c_password);
                 WebResponse response = requestDir.GetResponse();
@@ -44,36 +45,43 @@ namespace networking2
             }
             catch
             {
-                error = textBox1.Text = "failed";
-    return false;
+                error = txtWD.Text = "failed";
+                return false;
             }
-                 error = textBox1.Text = "Connection Established";
-return true;
-       }
-        private void submit_Click(object sender, RoutedEventArgs e)
+                error = txtWD.Text = "Connection Established";
+                return true;
+            }
+        
+
+
+        private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-            address = server.Text = "drwestfall.info";
-            c_username = username.Text = "project01";
-            c_password = pword.Text = "csci355";
+         
+        }
+
+        private void btnConnect_Click_1(object sender, RoutedEventArgs e)
+        {
+            address = "drwestfall.info";
+            c_username = "project01";
+            c_password = "csci355";
             StringBuilder result = new StringBuilder();
             //isValidConnection(server.Text,username.Text,password.Text);
 
 
-            
-           FtpWebRequest requestDir = (FtpWebRequest)WebRequest.Create("ftp://"+address);
+
+            FtpWebRequest requestDir = (FtpWebRequest)WebRequest.Create("ftp://" + address);
             requestDir.Method = WebRequestMethods.Ftp.ListDirectory;
             requestDir.Credentials = new NetworkCredential(c_username, c_password);
             WebResponse response = requestDir.GetResponse();
-             FtpWebResponse responseDir = (FtpWebResponse)requestDir.GetResponse();
-             StreamReader readerDir = new StreamReader(responseDir.GetResponseStream()); 
-             //error = "Connected to the server";
-             Upload w2 = new Upload();
+            FtpWebResponse responseDir = (FtpWebResponse)requestDir.GetResponse();
+            StreamReader readerDir = new StreamReader(responseDir.GetResponseStream());
+            //error = "Connected to the server";
+            Upload w2 = new Upload();
             w2.Show();
-           // this.Hide();
-           
-           
-         }
+            // this.Hide();
 
-       
-}
+        }
+
+
     }
+}

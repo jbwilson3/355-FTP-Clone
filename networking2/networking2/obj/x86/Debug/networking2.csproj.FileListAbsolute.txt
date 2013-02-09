@@ -28,3 +28,20 @@ C:\Users\Wembley\documents\visual studio 2010\Projects\networking2\networking2\o
 C:\Users\Wembley\documents\visual studio 2010\Projects\networking2\networking2\obj\x86\Debug\networking2.Properties.Resources.resources
 C:\Users\Wembley\documents\visual studio 2010\Projects\networking2\networking2\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Wembley\documents\visual studio 2010\Projects\networking2\networking2\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\networking2.exe
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\networking2.pdb
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\bin\Debug\networking2.exe
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\bin\Debug\networking2.pdb
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\MainWindow.baml
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\Upload.baml
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\MainWindow.g.cs
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\Upload.g.cs
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\App.g.cs
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\networking2_MarkupCompile.cache
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\networking2.g.resources
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\networking2.Properties.Resources.resources
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\MainWindow2.baml
+C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\MainWindow2.g.cs
