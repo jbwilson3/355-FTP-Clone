@@ -20,8 +20,10 @@ namespace networking2
     /// <summary>
     /// Interaction logic for MainWindow2.xaml
     /// </summary>
-    public partial class MainWindow2 : Window
+    public partial class MainWindow : Window
     {
+
+        //struct containing all data needed for each connection. extendable. (port, new home~ dir...)
         public struct Connection_Data
         {
             public string nameP, serverP, usernameP, passwordP;
@@ -37,16 +39,21 @@ namespace networking2
 
         //initialize connection array
         Connection_Data[] connectionsA; // declare numbers as an int array of any size
-       
-        public Connection_Data[] ExportData()
-        {
-            return connectionsA;
-        }
 
-        public MainWindow2()
+        public MainWindow()
         {
             InitializeComponent();
-         
+            populate_connections();
+        }
+
+        ~MainWindow()
+        {
+            Console.WriteLine("Deconstructing MainWindow2");
+        }
+    
+        //Populate all connections list
+        private void populate_connections(){
+            connectionsLB.Items.Clear();
             //Read file "saved_connections.txt" and populate an array with data struct info
             try
             {
@@ -55,7 +62,7 @@ namespace networking2
                 {
                     //lineCount == number of lines in file
                     var lineCount = File.ReadLines("saved_connections.txt").Count();
-                    connectionsA = new Connection_Data[lineCount];// numbers is a 10-element array
+                    connectionsA = new Connection_Data[lineCount];// numbers is an array with the length == the number of lines
 
                     for (int i = 0; i < lineCount; i++)
                     {
@@ -63,8 +70,8 @@ namespace networking2
                         String line = saved_connections.ReadLine();
                         char[] delimiterChars = { ':' };
                         string[] words = line.Split(delimiterChars);
- 
-                        //populate connectionsA array
+
+                        //populate connectionsA array with data
                         connectionsA[i].nameP = words[0];
                         connectionsA[i].serverP = words[1];
                         connectionsA[i].usernameP = words[2];
@@ -79,43 +86,37 @@ namespace networking2
                 Console.WriteLine(e.Message);
             }
 
-           // Loop through and dynamically add items to the ListBox. 
+            // Loop through and dynamically add items to the ListBox. 
             for (int i = 0; i < connectionsA.Length; i++)
             {
-                lstConnections.Items.Add(connectionsA[i].nameP);
+                connectionsLB.Items.Add(connectionsA[i].nameP);
             }
         }
-    
+
+
         internal static string c_username, c_password, error, file_loc = string.Empty;
         internal static string address = string.Empty;
 
-
-       private bool isValidConnection(string url, string user, string password)
-             {
-                try 
-                {
-                
-                    FtpWebRequest requestDir = (FtpWebRequest)WebRequest.Create("ftp://"+address);
-                    requestDir.Method = WebRequestMethods.Ftp.ListDirectory;
-                    requestDir.Credentials = new NetworkCredential(c_username, c_password);
-                    WebResponse response = requestDir.GetResponse();
-                
-                }
-                catch
-                {
-                    error = txtWD.Text = "failed";
-                    return false;
-                }
-                error = txtWD.Text = "Connection Established";
-                return true;
-            }
-        
-        private void btnConnect_Click(object sender, RoutedEventArgs e)
+        private bool isValidConnection(string url, string user, string password)
         {
-         
+            try 
+            {
+                FtpWebRequest requestDir = (FtpWebRequest)WebRequest.Create("ftp://"+address);
+                requestDir.Method = WebRequestMethods.Ftp.ListDirectory;
+                requestDir.Credentials = new NetworkCredential(c_username, c_password);
+                WebResponse response = requestDir.GetResponse();
+            }
+            catch
+            {
+                error = txtWD.Text = "failed";
+                return false;
+            }
+
+            error = txtWD.Text = "Connection Established";
+            return true;
         }
 
-        private void btnConnect_Click_1(object sender, RoutedEventArgs e)
+        private void connectBT_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Connect Clicked");
             address = connectionsA[0].serverP;
@@ -135,11 +136,11 @@ namespace networking2
             //error = "Connected to the server";
             Upload w2 = new Upload();
             w2.Show();
-/*            // this.Hide();
-*/
+            // this.Hide();
+
         }
 
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        private void refreshBT_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Refresh Clicked");
             /*
@@ -165,54 +166,94 @@ namespace networking2
             */
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void addConnBT_Click(object sender, RoutedEventArgs e)
+        {
+            //Creates new add window, and shows it, making the parent window wait till add is closed
+            Add add_window = new Add();
+            add_window.ShowDialog();
+
+            //repopulate list
+            populate_connections();
+        }
+
+        private void mkdirBT_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Mkdir Button Clicked");
+        }
+
+        private void uploadBT_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Upload Button Clicked");
+        }
+
+        private void browseBT_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Browse Button Clicked");
+        }
+
+        private void removeBT_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("RM Button Clicked");
+        }
+
+        private void chmodBT_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Permissions Button Clicked");
+        }
+
+        private void mvBT_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("MV Button Clicked");
+        }
+        
+        private void removeConnBT_Click(object sender, RoutedEventArgs e)
         {
             
+            //creating a temp file to copy old file minus the removed item
+            string tempFile = System.IO.Path.GetTempFileName();
+
+            using (var sr = new StreamReader("saved_connections.txt"))
+            {
+                using (var sw = new StreamWriter(tempFile))
+                {
+                    string line;
+                    string linetocompare="";
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        //check each line in file and check if it is the item selected
+                        for (int i = 0; i < connectionsA.Length; i++ )
+                        {
+                            //if it is the item selected, set linetocompare == to the string it should be
+                            if (connectionsA[i].nameP == connectionsLB.SelectedItem)
+                            {
+                                linetocompare = connectionsA[i].nameP + ":" + connectionsA[i].serverP + ":" 
+                                    + connectionsA[i].usernameP + ":" + connectionsA[i].passwordP;
+                            }
+                        }
+                        //write every line to the tempfile, as long as it is not the selected item
+                        if (line != linetocompare)
+                            sw.WriteLine(line);
+                    }
+                }
+            }
+
+            //update old file with new tempfile
+            File.Delete("saved_connections.txt");
+            File.Move(tempFile, "saved_connections.txt");
+
+            //repopulate the connections list with new file
+            this.populate_connections();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Window_loaded");
         }
 
         private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Add Clicked");
-            Add add = new Add();
-            add.Show();
-        }
-
-        private void btnMkdir_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Mkdir Clicked");
-        }
-
-        private void btnUpload_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Upload Clicked");
-        }
-
-        private void btnBrowse_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Browse Clicked");
-        }
-
-        private void btnRemove_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("RM Clicked");
-        }
-
-        private void btnChMod_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Permissions Clicked");
-        }
-
-        private void btnRename_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("MV Clicked");
-        }
-
-
-
+            Console.WriteLine("ListBoxItem_Selected");
+        } 
     }
 }

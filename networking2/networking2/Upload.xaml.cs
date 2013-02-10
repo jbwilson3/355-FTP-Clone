@@ -43,10 +43,10 @@ namespace networking2
 
            // MessageBox.Show(MainWindow.address);
             FileInfo toUpload = new FileInfo(fileName);
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + MainWindow2.address + "/" + toUpload.Name);
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + MainWindow.address + "/" + toUpload.Name);
 
             request.Method = WebRequestMethods.Ftp.UploadFile;
-            request.Credentials = new NetworkCredential(MainWindow2.c_username, MainWindow2.c_password);
+            request.Credentials = new NetworkCredential(MainWindow.c_username, MainWindow.c_password);
             Stream ftpStream = request.GetRequestStream();
             FileStream file = File.OpenRead(fileName);
             int length = 1024;
@@ -70,8 +70,8 @@ namespace networking2
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
             WebClient request = new WebClient();
-            request.Credentials = new NetworkCredential(MainWindow2.c_username, MainWindow2.c_password);
-            byte[] fileData = request.DownloadData("ftp://" + MainWindow2.address + "/" + "test2.txt");
+            request.Credentials = new NetworkCredential(MainWindow.c_username, MainWindow.c_password);
+            byte[] fileData = request.DownloadData("ftp://" + MainWindow.address + "/" + "test2.txt");
             FileStream file = File.Create("c:\\yada\\" + "test2.txt");
             file.Write(fileData, 0, fileData.Length);
             file.Close();

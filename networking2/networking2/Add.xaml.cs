@@ -24,6 +24,11 @@ namespace networking2
             InitializeComponent();	
         }
 
+        ~Add()
+        {
+            Console.WriteLine("deconstructing add");
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -31,13 +36,18 @@ namespace networking2
 
         private void addBT_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Add Clicked");
             using (StreamWriter add_conn = File.AppendText("saved_connections.txt"))
             {
-                add_conn.WriteLine(this.connNameTB.Text+":"+this.serverTB.Text+":"+this.usernameTB.Text+":"+this.passwordTB.Text);
-                add_conn.Close();
+                if (this.connNameTB.Text != "" && this.serverTB.Text != "" && this.usernameTB.Text != "" && this.passwordTB.Text != "")
+                {
+                    add_conn.WriteLine(this.connNameTB.Text+":"+this.serverTB.Text+":"+this.usernameTB.Text+":"+this.passwordTB.Text);
+                    add_conn.Close();
+                    this.Close();
+                }
+                else{
+                    MessageBox.Show("Make sure all fields are filled out!");
+                }
             }
-            this.Close();
         }
 
         private void cancelBT_Click(object sender, RoutedEventArgs e)

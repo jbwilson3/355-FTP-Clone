@@ -48,10 +48,8 @@ C:\Users\David\Documents\GitHub\ftp355\networking2\networking2\obj\x86\Debug\Mai
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\networking2.exe
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\networking2.pdb
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\ResolveAssemblyReference.cache
-E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\MainWindow.baml
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\MainWindow2.baml
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\Upload.baml
-E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\MainWindow.g.cs
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\MainWindow2.g.cs
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\Upload.g.cs
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\App.g.cs
@@ -64,3 +62,5 @@ E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\bin\Debug\n
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\bin\Debug\networking2.pdb
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\Add.baml
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\Add.g.cs
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\MainWindow3.baml
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\networking2\obj\x86\Debug\MainWindow3.g.cs

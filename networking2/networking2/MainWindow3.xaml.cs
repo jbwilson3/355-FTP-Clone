@@ -21,12 +21,12 @@ namespace networking2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow: Window
+    public partial class MainWindow3: Window
     {
 
        internal static string c_username, c_password, error, file_loc = string.Empty;
         internal static string address = string.Empty;
-        public MainWindow()
+        public MainWindow3()
         {
             InitializeComponent();
         }
