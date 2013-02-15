@@ -1,0 +1,4 @@
+Project 1 Connetion#drwestfall.info#project01#csci355
+Same Credentials again#drwestfall.info#project01#csci355
+Test FTP creds#ftp.drivehq.com#ftp355#csci355
+Test - should not work#Bad#UN#Pass
