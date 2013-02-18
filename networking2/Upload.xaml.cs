@@ -20,35 +20,29 @@ namespace networking2
     /// </summary>
     public partial class Upload : Window 
     {
+        internal static string upload_file; 
         public Upload()
         {
             InitializeComponent();
-          // MessageBox.Show(MainWindow.
+            uploadFile.Text = upload_file; 
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-           
-           // Uri target = new Uri("ftp"+);
-            string fileName = "test2.txt";
-
-           // if (File.Exists(fileName))
 
 
-               // MessageBox.Show(MainWindow.error);
 
-          //  else
 
-               // MessageBox.Show(MainWindow.error);
+            FileInfo toUpload = new FileInfo(uploadFile.Text);
 
-           // MessageBox.Show(MainWindow.address);
-            FileInfo toUpload = new FileInfo(fileName);
+            Console.WriteLine("These are the current values: " + MainWindow.c_username + MainWindow.c_password + MainWindow.address);
+            MessageBox.Show(MainWindow.address);
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + MainWindow.address + "/" + toUpload.Name);
 
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(MainWindow.c_username, MainWindow.c_password);
             Stream ftpStream = request.GetRequestStream();
-            FileStream file = File.OpenRead(fileName);
+            FileStream file = File.OpenRead(uploadFile.Text);
             int length = 1024;
             byte[] buffer = new byte[length];
             int bytesRead = 0;

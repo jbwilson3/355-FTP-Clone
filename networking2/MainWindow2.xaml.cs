@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Net;
 using System.IO;
 using System.Threading;
+using Microsoft.Win32;
 
 namespace networking2
 {
@@ -221,8 +222,43 @@ namespace networking2
 
         private void uploadBT_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Upload Button Clicked");
+            var openFileDialog1 = new OpenFileDialog();
+            var result = openFileDialog1.ShowDialog();
+            string strFileLocation = "";
+
+            string strDirectory = "C://";
+
+            //Open the dialog box
+
+
+
+            Console.WriteLine("Directory: " + strDirectory);
+
+            openFileDialog1.InitialDirectory = strDirectory;
+
+            openFileDialog1.Filter = "All files (*.*)|*.*";
+
+            openFileDialog1.FilterIndex = 1;
+
+            openFileDialog1.Multiselect = false;
+
+            openFileDialog1.RestoreDirectory = true;
+
+            MessageBoxResult Result = MessageBox.Show("Are you sure you want no upload this file?", "Fantastic 4", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+
+
+            if (Result == MessageBoxResult.Yes)
+            {
+
+                strFileLocation = openFileDialog1.FileName;
+                Upload.upload_file = strFileLocation;
+
+            }
+            Upload w2 = new Upload();
+              w2.Show();
         }
+    
 
         private void browseBT_Click(object sender, RoutedEventArgs e)
         {

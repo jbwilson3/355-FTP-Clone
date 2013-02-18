@@ -4,7 +4,7 @@
         Title="Upload" Height="314" Width="324">
     <Grid>
         <Image Height="261" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="278" Source="/networking2;component/Images/wallpaper___fantastic_four_classic_comix_logo_by_kalangozilla-d5sy553.jpg" Margin="12,2,0,0" />
-        <Button Content="Upload" Height="39" HorizontalAlignment="Left" Margin="35,186,0,0" Name="upload_File" VerticalAlignment="Top" Width="92" Click="button1_Click" />
-        <Button Content="Download" Height="41" HorizontalAlignment="Left" Margin="174,184,0,0" Name="button1" VerticalAlignment="Top" Width="88" Click="button1_Click_1" />
+        <Button Content="Upload" Height="39" HorizontalAlignment="Left" Margin="105,204,0,0" Name="upload_File" VerticalAlignment="Top" Width="92" Click="button1_Click" />
+        <TextBox Height="34" HorizontalAlignment="Left" Margin="16,60,0,0" Name="uploadFile" VerticalAlignment="Top" Width="269" />
     </Grid>
 </Window>
