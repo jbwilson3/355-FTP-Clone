@@ -158,9 +158,10 @@ namespace networking2
                 FtpWebResponse responseDir = (FtpWebResponse)requestDir.GetResponse();
                 StreamReader readerDir = new StreamReader(responseDir.GetResponseStream());
                 //error = "Connected to the server";
-                Upload w2 = new Upload();
-                w2.Show();
+                //Upload w2 = new Upload();
+                //w2.Show();
                 // this.Hide();
+                
             }
 
         }
@@ -168,27 +169,26 @@ namespace networking2
         private void refreshBT_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Refresh Clicked");
-            /*
+            
             FtpWebRequest list = (FtpWebRequest)WebRequest.Create("ftp://" + address);
             list.Credentials = new NetworkCredential(c_username, c_password);
             list.Method = WebRequestMethods.Ftp.ListDirectory;
             WebResponse listResponse = (FtpWebResponse)list.GetResponse();
             Stream listStream = listResponse.GetResponseStream();
             StreamReader listReader = new StreamReader(listStream);
-            try
+            //clear request so the refresh button may be used again
+            
+           // put files in listItem
+            string fileName;
+            lstDir.Items.Clear();
+            while (listReader.Peek() != -1)
             {
-                string fileName;
-                lstDir.Items.Clear();
-                while (listReader.Peek() != -1)
-                {
-                    fileName = listReader.ReadLine();
-                    lstDir.Items.Add(fileName);
-                }
+                fileName = listReader.ReadLine();
+                lstDir.Items.Add(fileName);
             }
-            catch
-            {
-            }
-            */
+
+            listResponse.Close();
+            list = null;
         }
 
         private void addConnBT_Click(object sender, RoutedEventArgs e)
@@ -204,6 +204,19 @@ namespace networking2
         private void mkdirBT_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Mkdir Button Clicked");
+
+            try
+            {
+                FtpWebRequest mkDir = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/mynewdir");
+                mkDir.Credentials = new NetworkCredential(c_username, c_password);
+                mkDir.Method = WebRequestMethods.Ftp.MakeDirectory;
+                WebResponse mkDirResponse = (FtpWebResponse)mkDir.GetResponse();
+                mkDirResponse.Close();
+                mkDir = null;
+            }
+            catch
+            {
+            }
         }
 
         private void uploadBT_Click(object sender, RoutedEventArgs e)
@@ -219,6 +232,32 @@ namespace networking2
         private void removeBT_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("RM Button Clicked");
+
+            try
+            {
+                bool isDir = true;
+                string file = lstDir.SelectedItem.ToString();
+                if(file[file.Length-3] == '.' || file[file.Length-4] == '.')
+                {
+                    isDir = false;
+                }
+                FtpWebRequest rm = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + lstDir.SelectedItem.ToString());
+                rm.Credentials = new NetworkCredential(c_username, c_password);
+                if (isDir)
+                {
+                    rm.Method = WebRequestMethods.Ftp.RemoveDirectory;
+                }
+                else
+                {
+                    rm.Method = WebRequestMethods.Ftp.DeleteFile;
+                }
+                WebResponse rmResponse = (FtpWebResponse)rm.GetResponse();
+                rmResponse.Close();
+                rm = null;
+            }
+            catch
+            {
+            }
         }
 
         private void chmodBT_Click(object sender, RoutedEventArgs e)
