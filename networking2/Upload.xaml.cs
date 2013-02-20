@@ -36,7 +36,7 @@ namespace networking2
             FileInfo toUpload = new FileInfo(uploadFile.Text);
 
             Console.WriteLine("These are the current values: " + MainWindow.c_username + MainWindow.c_password + MainWindow.address);
-            MessageBox.Show(MainWindow.address);
+           
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + MainWindow.address + "/" + toUpload.Name);
 
             request.Method = WebRequestMethods.Ftp.UploadFile;
