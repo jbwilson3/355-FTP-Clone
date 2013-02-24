@@ -16,6 +16,7 @@ using System.IO;
 using System.Threading;
 using Microsoft.Win32;
 
+
 namespace networking2
 {
     /// <summary>
@@ -23,7 +24,7 @@ namespace networking2
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+
         //struct containing all data needed for each connection. extendable. (port, new home~ dir...)
         public struct Connection_Data
         {
@@ -40,25 +41,26 @@ namespace networking2
 
         //initialize connection array
         Connection_Data[] connectionsA; // declare numbers as an int array of any size
-   
+
         public MainWindow()
         {
             InitializeComponent();
             populate_connections();
-        
- 
+
+
         }
 
         ~MainWindow()
         {
             Console.WriteLine("Deconstructing MainWindow2");
         }
-    private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Window_loaded");
         }
         //Populate all connections list
-        private void populate_connections(){
+        private void populate_connections()
+        {
             connectionsLB.Items.Clear();
             //Read file "saved_connections.txt" and populate an array with data struct info
             try
@@ -102,20 +104,20 @@ namespace networking2
 
         internal static string c_name, c_username, c_password, error, file_loc = string.Empty;
         internal static string address = string.Empty;
+        internal static bool[] isDir = new bool[1000];
 
-        
+
 
         private void connectBT_Click(object sender, RoutedEventArgs e)  //connects to server and displays files
         {
             Console.WriteLine("Connect Clicked. " + connectionsLB.SelectedItem + " is selected.");
-            
-            
+
+
             c_name = string.Empty;
             c_username = string.Empty;
             c_password = string.Empty;
             error = string.Empty;
             file_loc = string.Empty;
-
 
             if (connectionsLB.SelectedIndex == -1)   //Checks to see if any selections to the list were made 
             {
@@ -137,69 +139,23 @@ namespace networking2
                     }
 
                 }
-                    StringBuilder result = new StringBuilder();
-                    FtpWebRequest requestDir = (FtpWebRequest)WebRequest.Create("ftp://" + address);
-                    requestDir.Method = WebRequestMethods.Ftp.ListDirectory;
-                    requestDir.Credentials = new NetworkCredential(c_username, c_password);
-                    WebResponse response = requestDir.GetResponse();
-                    FtpWebResponse responseDir = (FtpWebResponse)requestDir.GetResponse();
-                    StreamReader readerDir = new StreamReader(responseDir.GetResponseStream());
-                    
-                   connectBT.Background = Brushes.Yellow;  // visually shows connection established
-                    connectBT.Content = "Connected";
 
-                    Stream listStream = response.GetResponseStream();
-                    StreamReader listReader = new StreamReader(listStream);
-                    //clear request so the refresh button may be used again
+                refresh(lstDir);
 
-                    // put files in listItem
-                    string fileName;
-                    lstDir.Items.Clear();
-                    while (listReader.Peek() != -1)
-                    {
-                        fileName = listReader.ReadLine();
-                        lstDir.Items.Add(fileName);
-                    }
+                //makes buttons available to users after a successful connection has been established 
+                downloadBT.Visibility = Visibility.Visible;
+                uploadBT.Visibility = Visibility.Visible;
+                mkdirBT.Visibility = Visibility.Visible;
+                refreshBT.Visibility = Visibility.Visible;
+                chmodBT.Visibility = Visibility.Visible;
+            }
 
-                    responseDir.Close();
-                    requestDir = null;
-
-                    //makes buttons available to users after a successful connection has been established 
-                    downloadBT.Visibility = Visibility.Visible;  
-                    uploadBT.Visibility = Visibility.Visible;
-                    mkdirBT.Visibility = Visibility.Visible;
-                    removeBT.Visibility = Visibility.Visible;
-                    refreshBT.Visibility = Visibility.Visible;
-                    chmodBT.Visibility = Visibility.Visible;
-                    delBT.Visibility = Visibility.Visible;
-                }
-            
-               }
+        }
 
         private void refreshBT_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Refresh Clicked");
-
-            FtpWebRequest list = (FtpWebRequest)WebRequest.Create("ftp://" + address);
-            list.Credentials = new NetworkCredential(c_username, c_password);
-            list.Method = WebRequestMethods.Ftp.ListDirectory;
-            WebResponse listResponse = (FtpWebResponse)list.GetResponse();
-            Stream listStream = listResponse.GetResponseStream();
-            StreamReader listReader = new StreamReader(listStream);
-            //clear request so the refresh button may be used again
-
-            // put files in listItem
-            string fileName;
-            lstDir.Items.Clear();
-            while (listReader.Peek() != -1)
-            {
-                fileName = listReader.ReadLine();
-                lstDir.Items.Add(fileName);
-            }
-
-            listResponse.Close();
-            list = null;
-                   }
+            refresh(lstDir);
+        }
 
         private void addConnBT_Click(object sender, RoutedEventArgs e)
         {
@@ -218,11 +174,11 @@ namespace networking2
             try
             {
                 InputBox w4 = new InputBox();
-              
+
                 w4.ShowDialog();
 
-              //  MessageBox.Show(InputBox.add_directory);
-          
+                //  MessageBox.Show(InputBox.add_directory);
+
                 FtpWebRequest mkDir = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + InputBox.add_directory);
                 mkDir.Credentials = new NetworkCredential(c_username, c_password);
                 mkDir.Method = WebRequestMethods.Ftp.MakeDirectory;
@@ -233,6 +189,8 @@ namespace networking2
             catch
             {
             }
+
+            refresh(lstDir);
         }
 
         private void uploadBT_Click(object sender, RoutedEventArgs e)
@@ -264,46 +222,16 @@ namespace networking2
                 Upload w2 = new Upload();
                 w2.Show();
             }
-                    
+
         }
 
         private void delBT_Click(object sender, RoutedEventArgs e)  //deletes a directory
         {
-            FtpWebRequest rm = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + lstDir.SelectedItem.ToString());
-            rm.Credentials = new NetworkCredential(c_username, c_password);
-
-            string path = Directory.GetCurrentDirectory();
-             string root = "ftp://"+address+"/"+lstDir.SelectedItem.ToString()+"/";
-
-
-
-             //Directory.Delete(root);
-
-
-        }
-        
-        private void removeBT_Click(object sender, RoutedEventArgs e)   //Removes a file
-        {
-            Console.WriteLine("RM Button Clicked");
-
             try
             {
-                bool isDir = true;
-                string file = lstDir.SelectedItem.ToString();
-                if(file[file.Length-3] == '.' || file[file.Length-4] == '.')
-                {
-                    isDir = false;
-                }
                 FtpWebRequest rm = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + lstDir.SelectedItem.ToString());
                 rm.Credentials = new NetworkCredential(c_username, c_password);
-                if (isDir)
-                {
-                    MessageBox.Show("Error");
-                }
-                else
-                {
-                    rm.Method = WebRequestMethods.Ftp.DeleteFile;
-                }
+                rm.Method = WebRequestMethods.Ftp.RemoveDirectory;
                 WebResponse rmResponse = (FtpWebResponse)rm.GetResponse();
                 rmResponse.Close();
                 rm = null;
@@ -311,6 +239,26 @@ namespace networking2
             catch
             {
             }
+            refresh(lstDir);
+        }
+
+        private void removeBT_Click(object sender, RoutedEventArgs e)   //Removes a file
+        {
+            try
+            {
+                //it is assumed that the address points to a file and not a directory
+                FtpWebRequest rm = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + lstDir.SelectedItem.ToString());
+                rm.Credentials = new NetworkCredential(c_username, c_password);
+                rm.Method = WebRequestMethods.Ftp.DeleteFile;
+                WebResponse rmResponse = (FtpWebResponse)rm.GetResponse();
+                rmResponse.Close();
+                rm = null;
+            }
+            catch
+            {
+            }
+
+            refresh(lstDir);
         }
 
         private void chmodBT_Click(object sender, RoutedEventArgs e)
@@ -318,10 +266,10 @@ namespace networking2
             Console.WriteLine("Permissions Button Clicked");
         }
 
-      
+
         private void removeConnBT_Click(object sender, RoutedEventArgs e)
         {
-            
+
             //creating a temp file to copy old file minus the removed item
             string tempFile = System.IO.Path.GetTempFileName();
 
@@ -330,17 +278,17 @@ namespace networking2
                 using (var sw = new StreamWriter(tempFile))
                 {
                     string line;
-                    string linetocompare="";
+                    string linetocompare = "";
 
                     while ((line = sr.ReadLine()) != null)
                     {
                         //check each line in file and check if it is the item selected
-                        for (int i = 0; i < connectionsA.Length; i++ )
+                        for (int i = 0; i < connectionsA.Length; i++)
                         {
                             //if it is the item selected, set linetocompare == to the string it should be
                             if (connectionsA[i].nameP == connectionsLB.SelectedItem)
                             {
-                                linetocompare = connectionsA[i].nameP + ":" + connectionsA[i].serverP + ":" 
+                                linetocompare = connectionsA[i].nameP + ":" + connectionsA[i].serverP + ":"
                                     + connectionsA[i].usernameP + ":" + connectionsA[i].passwordP;
                             }
                         }
@@ -359,15 +307,6 @@ namespace networking2
             this.populate_connections();
         }
 
-        
-        
-       
-        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("ListBoxItem_Selected");
-        }
-
-       
         private void downloadBT_Click(object sender, RoutedEventArgs e)
         {
 
@@ -408,10 +347,122 @@ namespace networking2
             }
         }
 
-       
 
-        
-        
-        } 
-    
+
+
+        //
+        //refresh function
+        //
+        public bool refresh(ListBox listDir)
+        {
+            //create request
+            FtpWebRequest list = (FtpWebRequest)WebRequest.Create("ftp://" + address);
+            list.Credentials = new NetworkCredential(c_username, c_password);
+            list.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
+            WebResponse listResponse = (FtpWebResponse)list.GetResponse();
+            Stream listStream = listResponse.GetResponseStream();
+            StreamReader listReader = new StreamReader(listStream);
+
+            // put files in listItem
+            listDir.Items.Clear();
+            int i = 0;
+            while (listReader.Peek() != -1)
+            {
+
+                //read next file/directory information
+                String line;
+                line = listReader.ReadLine();
+
+                //find the file name and add it to the listbox
+                int pos = 0;
+                while (line[pos++] != ':') ;
+                while (line[pos++] != ' ') ;
+
+                listDir.Items.Add(line.Substring(pos));
+
+                line.Trim();
+                //Is it a directory?
+                if (line[0] == 'd')
+                {
+                    isDir[i++] = true;
+                }
+                else
+                {
+                    isDir[i++] = false;
+                }
+
+
+            }
+
+            //clear request so the refresh button may be used again
+            listResponse.Close();
+            list = null;
+            
+            //update working directory
+            updateDirectory();
+
+            return true;
+        }
+
+        private void updateDirectory()
+        {
+            if (address.Length > 35)
+            {
+                txtDirectory.Text = "ftp://" + address.Substring(0, 10) + "..." + address.Substring(address.Length - 15) + "/";
+            }
+            else
+            {
+                txtDirectory.Text = "ftp://" + address + "/";
+            }
+        }
+
+        private void lstDir_MouseDoubleClick(object sender, System.EventArgs e)
+        {
+            if (lstDir.SelectedIndex != -1)
+            {
+                if (isDir[lstDir.SelectedIndex] == true)
+                {
+                    address = address + "/" + lstDir.SelectedItem.ToString();
+                    updateDirectory();
+
+                    refresh(lstDir);
+                }
+            }
+        }
+
+        private void lstDir_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstDir.SelectedIndex != -1)
+            {
+
+                if (isDir[lstDir.SelectedIndex] == true)
+                {
+                    removeBT.Visibility = Visibility.Hidden;
+                    delBT.Visibility = Visibility.Visible;   
+                }
+                else
+                {
+                    removeBT.Visibility = Visibility.Visible;
+                    delBT.Visibility = Visibility.Hidden;
+                }
+            }
+
+        }
+
+        private void btnUpDir_Click(object sender, RoutedEventArgs e)
+        {
+            if (address.Length == 0)
+                return;
+            int i = address.Length - 1;
+            while (address[i--] != '/' && i > 0) ;
+
+
+            if(i>0)
+            {
+                address = address.Substring(0, i+1);
+                updateDirectory();
+                refresh(lstDir);
+            }
+        }
+    }
 }

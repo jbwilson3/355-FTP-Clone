@@ -162,3 +162,5 @@ C:\Users\Wembley\Desktop\ftp355\networking2\obj\x86\Debug\networking2.g.resource
 C:\Users\Wembley\Desktop\ftp355\networking2\obj\x86\Debug\networking2.Properties.Resources.resources
 C:\Users\Wembley\Desktop\ftp355\networking2\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Wembley\Desktop\ftp355\networking2\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\David\Documents\GitHub\ftp355\networking2\obj\x86\Debug\InputBox.baml
+C:\Users\David\Documents\GitHub\ftp355\networking2\obj\x86\Debug\InputBox.g.cs
