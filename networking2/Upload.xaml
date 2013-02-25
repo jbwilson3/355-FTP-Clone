@@ -4,7 +4,11 @@
         Title="Upload" Height="314" Width="324">
     <Grid>
         <Image Height="261" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="278" Source="/networking2;component/Images/wallpaper___fantastic_four_classic_comix_logo_by_kalangozilla-d5sy553.jpg" Margin="12,2,0,0" />
-        <Button Content="Upload" Height="39" HorizontalAlignment="Left" Margin="105,204,0,0" Name="upload_File" VerticalAlignment="Top" Width="92" Click="button1_Click" />
-        <TextBox Height="34" HorizontalAlignment="Left" Margin="16,60,0,0" Name="uploadFile" VerticalAlignment="Top" Width="269" />
+        <Button Content="Upload" Height="39" HorizontalAlignment="Left" Margin="56,202,0,0" Name="upload_File" VerticalAlignment="Top" Width="92" Click="button1_Click" />
+        <TextBox Height="34" HorizontalAlignment="Left" Margin="12,27,0,0" Name="uploadFile" VerticalAlignment="Top" Width="269" />
+        <TextBox Height="24" HorizontalAlignment="Left" Margin="12,138,0,0" Name="StatusText" VerticalAlignment="Top" Width="136" />
+        <ProgressBar Height="26" HorizontalAlignment="Left" Margin="12,172,0,0" Name="Progress" VerticalAlignment="Top" Width="269" />
+        <Button Content="Button" Height="43" HorizontalAlignment="Left" Margin="184,210,0,0" Name="CancelButton" VerticalAlignment="Top" Width="75" Click="CancelButton_Click" />
+        <TextBox Height="24" HorizontalAlignment="Left" Margin="22,100,0,0" Name="myProgressContext" VerticalAlignment="Top" Width="259" />
     </Grid>
 </Window>
