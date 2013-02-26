@@ -13,8 +13,8 @@
         <Button Content="Refresh" Height="35" HorizontalAlignment="Left" Margin="544,10,0,0" Name="refreshBT" VerticalAlignment="Top" Width="99" Click="refreshBT_Click" Visibility="Hidden" />
         <Button Content="Add Directory" Height="35" HorizontalAlignment="Left" Margin="544,77,0,0" Name="mkdirBT" VerticalAlignment="Top" Width="98" Click="mkdirBT_Click" Visibility="Hidden" />
         <Button Content="Remove File" Height="35" HorizontalAlignment="Left" Margin="545,190,0,0" Name="removeBT" VerticalAlignment="Top" Width="98" Click="removeBT_Click" Visibility="Hidden" />
-        <Button Content="chmod" Height="35" HorizontalAlignment="Left" Margin="544,133,0,0" Name="chmodBT" VerticalAlignment="Top" Width="98" Click="chmodBT_Click" Background="#FFFDDA47" Visibility="Hidden" />
-        <Button Content="Delete Directory" Height="35" HorizontalAlignment="Left" Margin="545,190,0,0" Name="delBT" VerticalAlignment="Top" Width="98" Click="delBT_Click" Background="#FFFFE783" Visibility="Hidden" />
+        <Button Content="chmod" Height="35" HorizontalAlignment="Left" Margin="544,133,0,0" Name="chmodBT" VerticalAlignment="Top" Width="99" Click="chmodBT_Click" Background="#FFFDDA47" Visibility="Hidden" />
+        <Button Content="Delete Directory" Height="35" HorizontalAlignment="Left" Margin="545,190,0,0" Name="delBT" VerticalAlignment="Top" Width="98" Click="delBT_Click" Visibility="Hidden" />
         <Button Content="Connect" Height="32" HorizontalAlignment="Left" Margin="51,318,0,0" Name="connectBT" VerticalAlignment="Top" Width="105" Grid.ColumnSpan="2" Click="connectBT_Click" />
         <Button Content="Upload" Height="32" HorizontalAlignment="Left" Margin="295,327,0,0" Name="uploadBT" VerticalAlignment="Top" Width="89" Click="uploadBT_Click" Visibility="Hidden" />
         <Button Content="Remove" Height="25" HorizontalAlignment="Right" Margin="0,12,437,0" Name="removeConnBT" VerticalAlignment="Top" Width="58" Click="removeConnBT_Click" />
