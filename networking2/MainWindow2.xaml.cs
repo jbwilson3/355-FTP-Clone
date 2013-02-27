@@ -147,7 +147,6 @@ namespace networking2
                 uploadBT.Visibility = Visibility.Visible;
                 mkdirBT.Visibility = Visibility.Visible;
                 refreshBT.Visibility = Visibility.Visible;
-                chmodBT.Visibility = Visibility.Visible;
             }
 
         }
@@ -258,6 +257,29 @@ namespace networking2
         private void chmodBT_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Permissions Button Clicked");
+
+            CHMOD change;
+
+            //detects if in a folder and passes correct info to chmod
+            string newaddress;
+            int count = address.IndexOf('/');
+            if (count <= 0)
+            {
+                newaddress = address;
+                //MessageBox.Show("SITE CHMOD " + "777 " + lstDir.SelectedItem.ToString());
+                change = new CHMOD(lstDir.SelectedItem.ToString());
+            }
+
+            else
+            {
+                newaddress = address.Remove(0, count);
+                //MessageBox.Show("SITE CHMOD " + "777 " + newaddress + "/" + lstDir.SelectedItem.ToString());
+                change = new CHMOD(newaddress + "/" + lstDir.SelectedItem.ToString());
+            }
+
+            //change = new CHMOD(lstDir.SelectedItem.ToString());
+
+            change.Show();
         }
 
 
@@ -411,12 +433,14 @@ namespace networking2
                 if (isDir[lstDir.SelectedIndex] == true)
                 {
                     removeBT.Visibility = Visibility.Hidden;
-                    delBT.Visibility = Visibility.Visible;   
+                    delBT.Visibility = Visibility.Visible;
+                    chmodBT.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     removeBT.Visibility = Visibility.Visible;
                     delBT.Visibility = Visibility.Hidden;
+                    chmodBT.Visibility = Visibility.Visible;
                 }
             }
 

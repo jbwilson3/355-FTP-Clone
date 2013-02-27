@@ -1,0 +1,29 @@
+﻿<Window x:Class="networking2.CHMOD"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CHMOD" Height="300" Width="300">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="100,20,0,0" TextWrapping="Wrap" Text="Owner" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="170,20,0,0" TextWrapping="Wrap" Text="Group" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="240,20,0,0" TextWrapping="Wrap" Text="World" VerticalAlignment="Top"/>
+        
+        <TextBlock HorizontalAlignment="Left" Margin="10,60,0,0" TextWrapping="Wrap" Text="Read" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,120,0,0" TextWrapping="Wrap" Text="Write" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,180,0,0" TextWrapping="Wrap" Text="Execute" VerticalAlignment="Top"/>
+
+        <CheckBox x:Name="OwnerRead" Content="" HorizontalAlignment="Left" Margin="100,60,0,0" VerticalAlignment="Top" Checked="OwnerRead_Checked" Unchecked="OwnerRead_Unchecked"/>
+        <CheckBox x:Name="GroupRead" Content="" HorizontalAlignment="Left" Margin="170,60,0,0" VerticalAlignment="Top" Checked="GroupRead_Checked" Unchecked="GroupRead_Unchecked"/>
+        <CheckBox x:Name="WorldRead" Content="" HorizontalAlignment="Left" Margin="240,60,0,0" VerticalAlignment="Top" Checked="WorldRead_Checked" Unchecked="WorldRead_Unchecked"/>
+
+        <CheckBox x:Name="OwnerWrite" Content="" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" Checked="OwnerWrite_Checked" Unchecked="OwnerWrite_Unchecked"/>
+        <CheckBox x:Name="GroupWrite" Content="" HorizontalAlignment="Left" Margin="170,120,0,0" VerticalAlignment="Top" Checked="GroupWrite_Checked" Unchecked="GroupWrite_Unchecked"/>
+        <CheckBox x:Name="WorldWrite" Content="" HorizontalAlignment="Left" Margin="240,120,0,0" VerticalAlignment="Top" Checked="WorldWrite_Checked" Unchecked="WorldWrite_Unchecked"/>
+
+        <CheckBox x:Name="OwnerExec" Content="" HorizontalAlignment="Left" Margin="100,180,0,0" VerticalAlignment="Top" Checked="OwnerExec_Checked" Unchecked="OwnerExec_Unchecked"/>
+        <CheckBox x:Name="GroupExec" Content="" HorizontalAlignment="Left" Margin="170,180,0,0" VerticalAlignment="Top" Checked="GroupExec_Checked" Unchecked="GroupExec_Unchecked"/>
+        <CheckBox x:Name="WorldExec" Content="" HorizontalAlignment="Left" Margin="240,180,0,0" VerticalAlignment="Top" Checked="WorldExec_Checked" Unchecked="WorldExec_Unchecked"/>
+        <Button Content="Change Permissions" HorizontalAlignment="Left" Margin="90,230,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
+
+
+    </Grid>
+</Window>
