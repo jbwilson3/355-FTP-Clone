@@ -54,6 +54,7 @@ namespace networking2
         void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             Progress.Value = e.ProgressPercentage;
+            label1.Content = e.ProgressPercentage + " %";
         }
 
         void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -105,7 +106,16 @@ namespace networking2
 
         }
 
-      
+        private void Cancel_Up_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            label1.Content = "0/0";
+        }
     }
 
 }

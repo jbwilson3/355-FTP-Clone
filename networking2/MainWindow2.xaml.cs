@@ -102,7 +102,7 @@ namespace networking2
         }
 
 
-        internal static string c_name, c_username, c_password, error, file_loc = string.Empty;
+        internal static string c_name, c_username, c_password, fileToDownload, error, file_loc = string.Empty;
         internal static string address = string.Empty;
         internal static bool[] isDir = new bool[1000];
 
@@ -212,17 +212,11 @@ namespace networking2
             openFileDialog1.Multiselect = false;
             openFileDialog1.RestoreDirectory = true;
 
-            MessageBoxResult Result = MessageBox.Show("Are you sure you want to upload this file?", "Fantastic 4", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (Result == MessageBoxResult.Yes)
-            {
-
                 strFileLocation = openFileDialog1.FileName;
                 Upload.upload_file = strFileLocation;
                 Upload w2 = new Upload();
                 w2.Show();
-            }
-
+           
         }
 
         private void delBT_Click(object sender, RoutedEventArgs e)  //deletes a directory
@@ -319,30 +313,9 @@ namespace networking2
             else
             {
 
-                WebClient request = new WebClient();
-                request.Credentials = new NetworkCredential(MainWindow.c_username, MainWindow.c_password);
-                string fileToDownload;
-                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                dlg.FileName = lstDir.SelectedItem.ToString();
-                dlg.Filter = "All files (*.*)|*.*";
-                fileToDownload = lstDir.SelectedItem.ToString();
-                MessageBoxResult Result = MessageBox.Show("Are you sure you want to download this file?", "Fantastic 4", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (Result == MessageBoxResult.Yes)
-                {
-                    if (dlg.ShowDialog() == true)
-                    {
-
-
-                        byte[] fileData = request.DownloadData("ftp://" + address + "/" + fileToDownload);
-                        System.IO.FileStream fs = (System.IO.FileStream)dlg.OpenFile();
-                        fs.Write(fileData, 0, fileData.Length);
-                        fs.Close();
-                        MessageBox.Show("Download complete");
-                    }
-
-
-                }
+                Download.download_file = fileToDownload = lstDir.SelectedItem.ToString();   //goes to download window
+                Download w2 = new Download();
+                w2.Show();
 
             }
         }
