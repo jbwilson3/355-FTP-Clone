@@ -37,14 +37,13 @@ namespace networking2
         {
             try
             {
-                //MessageBox.Show("SITE CHMOD " + owner + group + world + " " + item);
-                FtpConnection chmod = new FtpConnection(MainWindow.address, MainWindow.c_username, MainWindow.c_password);
+                FtpConnection chmod = new FtpConnection(MainWindow.address.Remove(0,6), MainWindow.c_username, MainWindow.c_password);
                 chmod.Open();
                 chmod.Login();
-                chmod.SendCommand("SITE CHMOD " + owner + group + world + " " + item);
-                chmod.Close();
-
+                chmod.SendCommand("SITE CHMOD " + owner + group + world + " " + MainWindow.directory + item);
+                //MessageBox.Show(MainWindow.address.Remove(0,6), "SITE CHMOD " + owner + group + world + " " + MainWindow.directory + item);
                 MessageBox.Show(item + " permissions changed to " + owner + group + world);
+                chmod.Close();
             }
 
             catch

@@ -264,27 +264,7 @@ namespace networking2
         {
             Console.WriteLine("Permissions Button Clicked");
 
-            CHMOD change;
-
-            //detects if in a folder and passes correct info to chmod
-            string newaddress;
-            int count = address.IndexOf('/');
-            if (count <= 0)
-            {
-                newaddress = address;
-                //MessageBox.Show("SITE CHMOD " + "777 " + lstDir.SelectedItem.ToString());
-                change = new CHMOD(lstDir.SelectedItem.ToString());
-            }
-
-            else
-            {
-                newaddress = address.Remove(0, count);
-                //MessageBox.Show("SITE CHMOD " + "777 " + newaddress + "/" + lstDir.SelectedItem.ToString());
-                change = new CHMOD(newaddress + "/" + lstDir.SelectedItem.ToString());
-            }
-
-            //change = new CHMOD(lstDir.SelectedItem.ToString());
-
+            CHMOD change = new CHMOD(lstDir.SelectedItem.ToString());
             change.Show();
         }
 
@@ -433,6 +413,7 @@ namespace networking2
                     String oldDirectory = directory;
                     directory = directory + lstDir.SelectedItem.ToString();
                     updateDirectory();
+                    chmodBT.Visibility = Visibility.Hidden;
 
                     if (!refresh(lstDir))
                     {
@@ -473,7 +454,12 @@ namespace networking2
             directory = directory.Substring(0, i+1);
             updateDirectory();
             refresh(lstDir);
-            
+            chmodBT.Visibility = Visibility.Hidden;
+        }
+
+        private void connectionsLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            connectBT_Click(sender, e);
         }
     }
 }
