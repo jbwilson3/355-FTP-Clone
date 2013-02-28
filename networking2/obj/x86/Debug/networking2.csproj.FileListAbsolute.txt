@@ -191,3 +191,7 @@ C:\Users\jbwilson3\Documents\GitHub\ftp355\networking2\obj\x86\Debug\networking2
 C:\Users\jbwilson3\Documents\GitHub\ftp355\networking2\obj\x86\Debug\networking2.Properties.Resources.resources
 C:\Users\jbwilson3\Documents\GitHub\ftp355\networking2\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\jbwilson3\Documents\GitHub\ftp355\networking2\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\David\Documents\GitHub\ftp355\networking2\obj\x86\Debug\CHMOD.baml
+C:\Users\David\Documents\GitHub\ftp355\networking2\obj\x86\Debug\Download.baml
+C:\Users\David\Documents\GitHub\ftp355\networking2\obj\x86\Debug\CHMOD.g.cs
+C:\Users\David\Documents\GitHub\ftp355\networking2\obj\x86\Debug\Download.g.cs

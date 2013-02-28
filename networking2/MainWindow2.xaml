@@ -6,7 +6,10 @@
         <Label Content="Connections" Height="30" HorizontalAlignment="Left" Margin="0,10,0,0" Name="connectionsLBL" VerticalAlignment="Top" Width="80" FontWeight="Bold" Foreground="#FF332D2D" />
         <ListBox Height="251" HorizontalAlignment="Left" Margin="69,46,0,0" Name="connectionsLB" VerticalAlignment="Top" Width="157"></ListBox>
         <Button Content="Add" Height="25" HorizontalAlignment="Left" Margin="94,12,0,0" Name="addConnBT" VerticalAlignment="Top" Width="39" Click="addConnBT_Click" />
-        <ListBox Height="251" HorizontalAlignment="Left" Margin="265,61,0,0" Name="lstDir" VerticalAlignment="Top" Width="267" SelectionChanged="lstDir_SelectionChanged" MouseDoubleClick="lstDir_MouseDoubleClick">
+        <ListBox Height="251" HorizontalAlignment="Left" Margin="265,61,0,0" Name="lstDir" VerticalAlignment="Top" Width="267" SelectionChanged="lstDir_SelectionChanged" MouseDoubleClick="lstDir_MouseDoubleClick" ItemTemplate="{Binding}">
+            <ListBox.LayoutTransform>
+                <MatrixTransform />
+            </ListBox.LayoutTransform>
             <ListBoxItem />
             <ListBoxItem />
         </ListBox>

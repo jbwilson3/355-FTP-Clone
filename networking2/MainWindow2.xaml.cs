@@ -104,8 +104,13 @@ namespace networking2
 
         internal static string c_name, c_username, c_password, fileToDownload, error, file_loc = string.Empty;
         internal static string address = string.Empty;
+        internal static string directory = string.Empty;
         internal static bool[] isDir = new bool[1000];
 
+        internal static FtpWebRequest ftpRequest;
+        internal static WebResponse ftpResponse;
+        internal static Stream ftpStream;
+        internal static StreamReader ftpReader;
 
 
         private void connectBT_Click(object sender, RoutedEventArgs e)  //connects to server and displays files
@@ -136,6 +141,7 @@ namespace networking2
                         c_username = connectionsA[i].usernameP;
                         c_password = connectionsA[i].passwordP;
 
+                        directory = "/";
                     }
 
                 }
@@ -178,7 +184,7 @@ namespace networking2
 
                 //  MessageBox.Show(InputBox.add_directory);
 
-                FtpWebRequest mkDir = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + InputBox.add_directory);
+                FtpWebRequest mkDir = (FtpWebRequest)WebRequest.Create(address + directory + InputBox.add_directory);
                 mkDir.Credentials = new NetworkCredential(c_username, c_password);
                 mkDir.Method = WebRequestMethods.Ftp.MakeDirectory;
                 WebResponse mkDirResponse = (FtpWebResponse)mkDir.GetResponse();
@@ -222,7 +228,7 @@ namespace networking2
         {
             try
             {
-                FtpWebRequest rm = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + lstDir.SelectedItem.ToString());
+                FtpWebRequest rm = (FtpWebRequest)WebRequest.Create(address + directory + lstDir.SelectedItem.ToString());
                 rm.Credentials = new NetworkCredential(c_username, c_password);
                 rm.Method = WebRequestMethods.Ftp.RemoveDirectory;
                 WebResponse rmResponse = (FtpWebResponse)rm.GetResponse();
@@ -240,17 +246,17 @@ namespace networking2
             try
             {
                 //it is assumed that the address points to a file and not a directory
-                FtpWebRequest rm = (FtpWebRequest)WebRequest.Create("ftp://" + address + "/" + lstDir.SelectedItem.ToString());
-                rm.Credentials = new NetworkCredential(c_username, c_password);
-                rm.Method = WebRequestMethods.Ftp.DeleteFile;
-                WebResponse rmResponse = (FtpWebResponse)rm.GetResponse();
-                rmResponse.Close();
-                rm = null;
+                ftpRequest = (FtpWebRequest)WebRequest.Create(address + directory + lstDir.SelectedItem.ToString());
+                ftpRequest.Credentials = new NetworkCredential(c_username, c_password);
+                ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile;
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                
             }
             catch
-            {
+            {   
             }
-
+            ftpResponse.Close();
+            ftpResponse = null;
             refresh(lstDir);
         }
 
@@ -350,39 +356,46 @@ namespace networking2
         //
         public bool refresh(ListBox listDir)
         {
-            //create request
-            FtpWebRequest list = (FtpWebRequest)WebRequest.Create("ftp://" + address);
-            list.Credentials = new NetworkCredential(c_username, c_password);
-            list.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
-            WebResponse listResponse = (FtpWebResponse)list.GetResponse();
-            Stream listStream = listResponse.GetResponseStream();
-            StreamReader listReader = new StreamReader(listStream);
-
+            try
+            {
+                //create request
+                ftpRequest = (FtpWebRequest)WebRequest.Create(address + directory);
+                ftpRequest.Credentials = new NetworkCredential(c_username, c_password);
+                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                ftpStream = ftpResponse.GetResponseStream();
+                ftpReader = new StreamReader(ftpStream);
+            }
+            catch
+            {
+                MessageBox.Show("Could Not Open Directory");
+                return false;
+            }
             // put files in listItem
             listDir.Items.Clear();
             int i = 0;
-            while (listReader.Peek() != -1)
+            while (ftpReader.Peek() != -1)
             {
 
                 //read next file/directory information
                 String line;
-                line = listReader.ReadLine();
+                line = ftpReader.ReadLine();
 
                 //find the file name and add it to the listbox
                 int pos = 0;
                 while (line[pos++] != ':') ;
                 while (line[pos++] != ' ') ;
 
-                listDir.Items.Add(line.Substring(pos));
-
                 line.Trim();
                 //Is it a directory?
                 if (line[0] == 'd')
                 {
+                    listDir.Items.Add(line.Substring(pos) + "/");
                     isDir[i++] = true;
                 }
                 else
                 {
+                    listDir.Items.Add(line.Substring(pos));
                     isDir[i++] = false;
                 }
 
@@ -390,8 +403,8 @@ namespace networking2
             }
 
             //clear request so the refresh button may be used again
-            listResponse.Close();
-            list = null;
+            ftpResponse.Close();
+            ftpRequest = null;
             
             //update working directory
             updateDirectory();
@@ -401,13 +414,13 @@ namespace networking2
 
         private void updateDirectory()
         {
-            if (address.Length > 35)
+            if (address.Length + directory.Length > 35 && address.Length > 10 && directory.Length > 15)
             {
-                txtDirectory.Text = "ftp://" + address.Substring(0, 10) + "..." + address.Substring(address.Length - 15) + "/";
+                txtDirectory.Text = address.Substring(0, 10) + "..." + directory.Substring(directory.Length - 15);
             }
             else
             {
-                txtDirectory.Text = "ftp://" + address + "/";
+                txtDirectory.Text = address + directory;
             }
         }
 
@@ -417,10 +430,14 @@ namespace networking2
             {
                 if (isDir[lstDir.SelectedIndex] == true)
                 {
-                    address = address + "/" + lstDir.SelectedItem.ToString();
+                    String oldDirectory = directory;
+                    directory = directory + lstDir.SelectedItem.ToString();
                     updateDirectory();
 
-                    refresh(lstDir);
+                    if (!refresh(lstDir))
+                    {
+                        directory = oldDirectory;
+                    }
                 }
             }
         }
@@ -448,18 +465,15 @@ namespace networking2
 
         private void btnUpDir_Click(object sender, RoutedEventArgs e)
         {
-            if (address.Length == 0)
+            if (directory.Length < 2)
                 return;
-            int i = address.Length - 1;
-            while (address[i--] != '/' && i > 0) ;
+            int i = directory.Length - 2;
+            while (directory[i--] != '/' && i > 0) ;
 
-
-            if(i>0)
-            {
-                address = address.Substring(0, i+1);
-                updateDirectory();
-                refresh(lstDir);
-            }
+            directory = directory.Substring(0, i+1);
+            updateDirectory();
+            refresh(lstDir);
+            
         }
     }
 }
