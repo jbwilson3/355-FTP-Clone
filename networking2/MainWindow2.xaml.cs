@@ -193,6 +193,7 @@ namespace networking2
             }
             catch
             {
+                MessageBox.Show("could not make the directory");
             }
 
             refresh(lstDir);
@@ -237,6 +238,7 @@ namespace networking2
             }
             catch
             {
+                MessageBox.Show("could not delete directory: " + directory);
             }
             refresh(lstDir);
         }
@@ -253,7 +255,8 @@ namespace networking2
                 
             }
             catch
-            {   
+            {
+                MessageBox.Show("could not delete file: " + directory);
             }
             ftpResponse.Close();
             ftpResponse = null;
@@ -348,7 +351,7 @@ namespace networking2
             }
             catch
             {
-                MessageBox.Show("Could Not Open Directory");
+                MessageBox.Show("could not retrieve directory information from " + address + directory);
                 return false;
             }
             // put files in listItem
