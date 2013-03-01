@@ -148,5 +148,10 @@ namespace networking2
         {
             world = world - 1;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

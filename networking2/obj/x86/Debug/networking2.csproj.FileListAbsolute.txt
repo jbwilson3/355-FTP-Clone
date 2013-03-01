@@ -219,3 +219,9 @@ C:\Users\Justin\Documents\GitHub\ftp355\networking2\obj\x86\Debug\networking2_Ma
 C:\Users\Justin\Documents\GitHub\ftp355\networking2\obj\x86\Debug\networking2.g.resources
 C:\Users\Justin\Documents\GitHub\ftp355\networking2\obj\x86\Debug\networking2.Properties.Resources.resources
 C:\Users\Justin\Documents\GitHub\ftp355\networking2\obj\x86\Debug\networking2.csproj.GenerateResource.Cache
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\CHMOD.baml
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\Download.baml
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\InputBox.baml
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\CHMOD.g.cs
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\Download.g.cs
+E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\InputBox.g.cs

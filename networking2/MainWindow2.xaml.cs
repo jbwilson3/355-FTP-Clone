@@ -265,7 +265,7 @@ namespace networking2
             Console.WriteLine("Permissions Button Clicked");
 
             CHMOD change = new CHMOD(lstDir.SelectedItem.ToString());
-            change.Show();
+            change.ShowDialog();
         }
 
 
@@ -461,5 +461,6 @@ namespace networking2
         {
             connectBT_Click(sender, e);
         }
+
     }
 }

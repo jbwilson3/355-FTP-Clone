@@ -2,6 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Add a Connection" Height="214" Width="286" Loaded="Window_Loaded">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFAA0B0B" Offset="0.083" />
+            <GradientStop Color="#FFE1F51F" Offset="0.909" />
+            <GradientStop Color="#FF239630" Offset="0.523" />
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <TextBox Height="23" HorizontalAlignment="Left" Margin="132,43,0,0" Name="serverTB" VerticalAlignment="Top" Width="120" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="132,72,0,0" Name="usernameTB" VerticalAlignment="Top" Width="120" />
