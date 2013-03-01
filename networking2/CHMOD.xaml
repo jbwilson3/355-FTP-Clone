@@ -9,30 +9,32 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="217*" />
-            <ColumnDefinition Width="61*" />
-        </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Left" Margin="89,20,0,0" TextWrapping="Wrap" Text="Owner" VerticalAlignment="Top" Foreground="#DAEAF1FA" FontWeight="Bold" FontSize="14" />
-        <TextBlock HorizontalAlignment="Left" Margin="156,20,0,0" TextWrapping="Wrap" Text="Group" VerticalAlignment="Top" Foreground="#DAEAF1FA" FontWeight="Bold" FontSize="14" />
-        <TextBlock HorizontalAlignment="Left" Margin="8,20,0,0" TextWrapping="Wrap" Text="World" VerticalAlignment="Top" Foreground="#DAEAF1FA" FontWeight="Bold" FontSize="14" Grid.Column="1" />
         
-        <TextBlock HorizontalAlignment="Left" Margin="10,60,0,0" TextWrapping="Wrap" Text="Read" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#DAEAF1FA" />
-        <TextBlock HorizontalAlignment="Left" Margin="10,120,0,0" TextWrapping="Wrap" Text="Write" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#DAEAF1FA" />
-        <TextBlock HorizontalAlignment="Left" Margin="10,180,0,0" TextWrapping="Wrap" Text="Execute" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#DAEAF1FA" />
+        <TextBlock x:Name="ownert" HorizontalAlignment="Left" Margin="87,60,0,0" TextWrapping="Wrap" Text="Owner" VerticalAlignment="Top" Foreground="#DAEAF1FA" FontWeight="Bold" FontSize="14" Visibility="Hidden" />
+        <TextBlock x:Name="groupt" HorizontalAlignment="Left" Margin="158,60,0,0" TextWrapping="Wrap" Text="Group" VerticalAlignment="Top" Foreground="#DAEAF1FA" FontWeight="Bold" FontSize="14" Visibility="Hidden" />
+        <TextBlock x:Name="worldt" HorizontalAlignment="Left" Margin="226,60,0,0" TextWrapping="Wrap" Text="World" VerticalAlignment="Top" Foreground="#DAEAF1FA" FontWeight="Bold" FontSize="14" Width="47" Visibility="Hidden"/>
+        
+        <TextBlock x:Name="readt" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="Read" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#DAEAF1FA" Visibility="Hidden" />
+        <TextBlock x:Name="writet" HorizontalAlignment="Left" Margin="10,140,0,0" TextWrapping="Wrap" Text="Write" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#DAEAF1FA" Visibility="Hidden" />
+        <TextBlock x:Name="exet" HorizontalAlignment="Left" Margin="10,180,0,0" TextWrapping="Wrap" Text="Execute" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#DAEAF1FA" Visibility="Hidden" />
 
-        <CheckBox x:Name="OwnerRead" Content="" HorizontalAlignment="Left" Margin="100,60,0,0" VerticalAlignment="Top" Checked="OwnerRead_Checked" Unchecked="OwnerRead_Unchecked"/>
-        <CheckBox x:Name="GroupRead" Content="" HorizontalAlignment="Left" Margin="170,60,0,0" VerticalAlignment="Top" Checked="GroupRead_Checked" Unchecked="GroupRead_Unchecked"/>
-        <CheckBox x:Name="WorldRead" Content="" HorizontalAlignment="Left" Margin="23,60,0,0" VerticalAlignment="Top" Checked="WorldRead_Checked" Unchecked="WorldRead_Unchecked" Grid.Column="1" />
+        <CheckBox x:Name="OwnerRead" Content="" HorizontalAlignment="Left" Margin="100,100,0,0" VerticalAlignment="Top" Checked="OwnerRead_Checked" Unchecked="OwnerRead_Unchecked" Visibility="Hidden"/>
+        <CheckBox x:Name="GroupRead" Content="" HorizontalAlignment="Left" Margin="170,100,0,0" VerticalAlignment="Top" Checked="GroupRead_Checked" Unchecked="GroupRead_Unchecked" Visibility="Hidden"/>
+        <CheckBox x:Name="WorldRead" Content="" HorizontalAlignment="Left" Margin="240,100,0,0" VerticalAlignment="Top" Checked="WorldRead_Checked" Unchecked="WorldRead_Unchecked" Visibility="Hidden"/>
 
-        <CheckBox x:Name="OwnerWrite" Content="" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" Checked="OwnerWrite_Checked" Unchecked="OwnerWrite_Unchecked"/>
-        <CheckBox x:Name="GroupWrite" Content="" HorizontalAlignment="Left" Margin="170,120,0,0" VerticalAlignment="Top" Checked="GroupWrite_Checked" Unchecked="GroupWrite_Unchecked"/>
-        <CheckBox x:Name="WorldWrite" Content="" HorizontalAlignment="Left" Margin="23,120,0,0" VerticalAlignment="Top" Checked="WorldWrite_Checked" Unchecked="WorldWrite_Unchecked" Grid.Column="1" />
+        <CheckBox x:Name="OwnerWrite" Content="" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Checked="OwnerWrite_Checked" Unchecked="OwnerWrite_Unchecked" Visibility="Hidden"/>
+        <CheckBox x:Name="GroupWrite" Content="" HorizontalAlignment="Left" Margin="170,140,0,0" VerticalAlignment="Top" Checked="GroupWrite_Checked" Unchecked="GroupWrite_Unchecked" Visibility="Hidden"/>
+        <CheckBox x:Name="WorldWrite" Content="" HorizontalAlignment="Left" Margin="240,140,0,0" VerticalAlignment="Top" Checked="WorldWrite_Checked" Unchecked="WorldWrite_Unchecked" Visibility="Hidden"/>
 
-        <CheckBox x:Name="OwnerExec" Content="" HorizontalAlignment="Left" Margin="100,180,0,0" VerticalAlignment="Top" Checked="OwnerExec_Checked" Unchecked="OwnerExec_Unchecked"/>
-        <CheckBox x:Name="GroupExec" Content="" HorizontalAlignment="Left" Margin="170,180,0,0" VerticalAlignment="Top" Checked="GroupExec_Checked" Unchecked="GroupExec_Unchecked"/>
-        <CheckBox x:Name="WorldExec" Content="" HorizontalAlignment="Left" Margin="23,180,0,0" VerticalAlignment="Top" Checked="WorldExec_Checked" Unchecked="WorldExec_Unchecked" Grid.Column="1" />
-        <Button Content="Change Permissions" HorizontalAlignment="Left" Margin="32,227,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="185,227,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" Grid.ColumnSpan="2" />
+        <CheckBox x:Name="OwnerExec" Content="" HorizontalAlignment="Left" Margin="100,180,0,0" VerticalAlignment="Top" Checked="OwnerExec_Checked" Unchecked="OwnerExec_Unchecked" Visibility="Hidden"/>
+        <CheckBox x:Name="GroupExec" Content="" HorizontalAlignment="Left" Margin="170,180,0,0" VerticalAlignment="Top" Checked="GroupExec_Checked" Unchecked="GroupExec_Unchecked" Visibility="Hidden"/>
+        <CheckBox x:Name="WorldExec" Content="" HorizontalAlignment="Left" Margin="240,180,0,0" VerticalAlignment="Top" Checked="WorldExec_Checked" Unchecked="WorldExec_Unchecked" Visibility="Hidden"/>
+        
+        <Button Content="Change Permissions" HorizontalAlignment="Left" Margin="32,227,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1" IsDefault="True"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="185,227,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" IsCancel="True"/>
+        
+        <Button x:Name="numtab" Content="Number" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="numtab_clicked"/>
+        <Button x:Name="ckbxtab" Content="Checkboxes" HorizontalAlignment="Left" Margin="115,20,0,0" VerticalAlignment="Top" Width="75" Click="ckbxtab_clicked"/>
+        <TextBox x:Name="chmodtxt" HorizontalAlignment="Left" Height="23" Margin="32,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1" MaxLength="3"/>
     </Grid>
 </Window>
