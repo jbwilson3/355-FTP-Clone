@@ -94,7 +94,6 @@ namespace networking2
             file.Close();
             ftpStream.Close();
 
-            MessageBox.Show("Upload Complete");
         }
 
 

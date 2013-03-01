@@ -129,8 +129,6 @@ void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
                 }
                 finally
                 {
-
-                    MessageBox.Show("Download Completed");
                 }
 
 
