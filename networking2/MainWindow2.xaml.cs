@@ -221,7 +221,7 @@ namespace networking2
                 strFileLocation = openFileDialog1.FileName;
                 Upload.upload_file = strFileLocation;
                 Upload w2 = new Upload();
-                w2.Show();
+                w2.ShowDialog();
            
         }
 
@@ -326,7 +326,7 @@ namespace networking2
 
                 Download.download_file = fileToDownload = lstDir.SelectedItem.ToString();   //goes to download window
                 Download w2 = new Download();
-                w2.Show();
+                w2.ShowDialog();
 
             }
         }
