@@ -64,7 +64,7 @@ namespace networking2
 
 
 
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + MainWindow.address + "/" + toUpload.Name);
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(MainWindow.address + MainWindow.directory + toUpload.Name);
 
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(MainWindow.c_username, MainWindow.c_password);

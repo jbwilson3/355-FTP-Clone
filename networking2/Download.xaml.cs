@@ -77,7 +77,7 @@ void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
                 {
 
 
-                    FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + MainWindow.address + "/" + MainWindow.fileToDownload);
+                    FtpWebRequest request = (FtpWebRequest)WebRequest.Create(MainWindow.address + MainWindow.directory + MainWindow.fileToDownload);
                     request.Credentials = new NetworkCredential(MainWindow.c_username, MainWindow.c_password);
                     request.Method = WebRequestMethods.Ftp.GetFileSize;
                     request.Proxy = null;
@@ -86,7 +86,7 @@ void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
                     using (WebResponse resp = request.GetResponse())
                         fileSize = resp.ContentLength;
 
-                    request = (FtpWebRequest)WebRequest.Create("ftp://" + MainWindow.address + "/" + MainWindow.fileToDownload);
+                    request = (FtpWebRequest)WebRequest.Create(MainWindow.address + MainWindow.directory + MainWindow.fileToDownload);
                     request.Credentials = new NetworkCredential(MainWindow.c_username, MainWindow.c_password);
                     request.Method = WebRequestMethods.Ftp.DownloadFile;
                     FtpWebResponse responseFileDownload = (FtpWebResponse)request.GetResponse();
