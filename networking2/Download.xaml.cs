@@ -57,6 +57,7 @@ namespace networking2
         private void confirm_Click(object sender, RoutedEventArgs e)
         {
             backgroundWorker.RunWorkerAsync();
+            button2.Content = "Close";
         }
 
 

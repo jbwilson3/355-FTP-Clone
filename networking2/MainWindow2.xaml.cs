@@ -266,9 +266,16 @@ namespace networking2
         private void chmodBT_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Permissions Button Clicked");
+            if (lstDir.SelectedIndex == -1)   //Checks to see if any selections to the list were made 
+            {
+                MessageBox.Show("No selection Chosen");
 
-            CHMOD change = new CHMOD(lstDir.SelectedItem.ToString());
-            change.ShowDialog();
+            }
+            else
+            {
+                CHMOD change = new CHMOD(lstDir.SelectedItem.ToString());
+                change.ShowDialog();
+            }
         }
 
 

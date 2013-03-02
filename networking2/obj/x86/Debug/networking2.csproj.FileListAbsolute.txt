@@ -125,11 +125,9 @@ C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\networking2.p
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\bin\Debug\networking2.exe
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\bin\Debug\networking2.pdb
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\MainWindow3.baml
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\MainWindow2.baml
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\Upload.baml
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\Add.baml
-C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\MainWindow3.g.cs
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\MainWindow2.g.cs
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\Upload.g.cs
 C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\Add.g.cs
@@ -225,3 +223,5 @@ E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\InputBox.
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\CHMOD.g.cs
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\Download.g.cs
 E:\Dropbox\School\Spring_2013\CSCI355\ftp355\networking2\obj\x86\Debug\InputBox.g.cs
+C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\CHMOD.baml
+C:\Users\Wembley\Documents\GitHub\ftp355\networking2\obj\x86\Debug\CHMOD.g.cs

@@ -61,9 +61,6 @@ namespace networking2
         {
 
             FileInfo toUpload = new FileInfo(file_upload);
-
-
-
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(MainWindow.address + MainWindow.directory + toUpload.Name);
 
             request.Method = WebRequestMethods.Ftp.UploadFile;
@@ -75,9 +72,6 @@ namespace networking2
             int bytesRead = 0;
 
             long filesize = toUpload.Length;
-
-
-
             int totalReadBytesCount = 0;
             double progress;
             do
@@ -93,7 +87,6 @@ namespace networking2
 
             file.Close();
             ftpStream.Close();
-
         }
 
 
@@ -102,7 +95,7 @@ namespace networking2
         {
 
             backgroundWorker.RunWorkerAsync();
-
+            Cancel_Up.Content = "Close";
         }
 
         private void Cancel_Up_Click(object sender, RoutedEventArgs e)
