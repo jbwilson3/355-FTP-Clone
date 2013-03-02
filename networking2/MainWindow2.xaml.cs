@@ -300,8 +300,8 @@ namespace networking2
                             //if it is the item selected, set linetocompare == to the string it should be
                             if (connectionsA[i].nameP == connectionsLB.SelectedItem)
                             {
-                                linetocompare = connectionsA[i].nameP + ":" + connectionsA[i].serverP + ":"
-                                    + connectionsA[i].usernameP + ":" + connectionsA[i].passwordP;
+                                linetocompare = connectionsA[i].nameP + "#" + connectionsA[i].serverP + "#"
+                                    + connectionsA[i].usernameP + "#" + connectionsA[i].passwordP;
                             }
                         }
                         //write every line to the tempfile, as long as it is not the selected item
